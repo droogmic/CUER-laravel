@@ -23,8 +23,8 @@ class CreateInvitemsTable extends Migration
             // ->foreign('updated_by')->references('id')->on('person');
             
             // polymorphic
-            $table->integer('storage_id')->unsigned()->nullable();
-            $table->string('storage_type')->nullable();
+            // $table->integer('storage_id')->unsigned()->nullable();
+            // $table->string('storage_type')->nullable();
         });
     }
 

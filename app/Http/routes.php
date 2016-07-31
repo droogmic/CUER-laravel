@@ -34,16 +34,20 @@ use App\InvType;
 Route::get('/test', function () {
     
     // $flights = App\User::all();
-    // foreach ($flights as $flight) {
-    //     print_r($flight->id);
-    // }
     
-    
-    print_r("Start");
-    $user = App\User::find(1);
-    print_r($user->name);
-    print_r($users = DB::table('users')->where('id', 1)->get());
+    // print_r("Start");
+    // $user = App\User::find(1);
+    // print_r($user->name);
+    // print_r($users = DB::table('users')->where('id', 1)->get());
     // print_r(DB::table('users')->select('name', 'email as user_email')->get());
+    
+    $invtypes = InvType::orderBy('created_at', 'asc')->get();
+    foreach ($invtypes as $invtype) {
+        echo '<pre>';
+        // print_r(is_null(NULL));
+        print_r(is_null($invtype->mass));
+        echo '</pre>';
+    }
     
 });
 
@@ -60,7 +64,7 @@ Route::get('/', function () {
  * Show InvType Dashboard
  */
 Route::get('/invtype', function () {
-    return show_invtypes;
+    return show_invtypes();
 });
 
 /**
@@ -73,7 +77,7 @@ Route::post('/invtype/add', function (Request $request) {
 /**
  * Delete InvType
  */
-Route::delete('/invtype/{invtype}', function (InvItem $invtype) {
+Route::delete('/invtype/{invtype}', function (InvType $invtype) {
     $invtype->delete();
     return redirect('/invtype');
 });
@@ -115,7 +119,7 @@ function show_invtypes() {
     $invitems = InvItem::orderBy('created_at', 'asc')->get();
     $invtypes = InvType::orderBy('created_at', 'asc')->get();
 
-    return view('invitems', [
+    return view('invtypes', [
         'invitems' => $invitems,
         'invtypes' => $invtypes,
     ]);
@@ -127,22 +131,25 @@ function show_invtypes() {
 function add_invtype(Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
-        'reference' => 'unique:inv_items',
+        'mass' => 'numeric',
     ]);
 
     if ($validator->fails()) {
-        return redirect('/invitem')
+        return redirect('/invtype')
             ->withInput()
             ->withErrors($validator);
     }
 
-    $invitem = new InvItem;
-    $invitem->name = $request->name;
-    $invitem->reference = $request->reference;
-    $invitem->description = $request->description;
-    $invitem->save();
+    $invtype = new InvType;
+    $invtype->name = $request->name;
+    $invtype->description = $request->description;
+    if ($request->mass != '')
+        $invtype->mass = $request->mass;
+    else
+        $invtype->mass = NULL;
+    $invtype->save();
 
-    return redirect('/invitem');
+    return redirect('/invtype');
 }
 
 

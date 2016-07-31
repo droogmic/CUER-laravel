@@ -27,9 +27,9 @@ class InvItem extends Model
     }
     
     // storeable items can contain invItems
-    public function storeable()
-    {
-        return $this->morphTo();
-    }
+    // public function storeable()
+    // {
+    //     return $this->morphTo();
+    // }
     
 }
