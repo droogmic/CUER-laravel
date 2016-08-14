@@ -13,8 +13,13 @@ class ForeignKeyContraintsInvItems extends Migration
     public function up()
     {
         Schema::table('inv_items', function (Blueprint $table) {
-            $table->foreign('type_id')->references('id')->on('inv_types');
-            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('type_id')
+                ->references('id')->on('inv_types')
+                ->onDelete('cascade');
+            $table->foreign('location_id')
+                ->references('id')->on('locations');
+            $table->foreign('updated_by')
+                ->references('id')->on('users');
         });
     }
 
@@ -27,6 +32,7 @@ class ForeignKeyContraintsInvItems extends Migration
     {
         Schema::table('inv_items', function (Blueprint $table) {
             $table->dropForeign('inv_items_type_id_foreign');
+            $table->dropForeign('inv_items_location_id_foreign');
             $table->dropForeign('inv_items_updated_by_foreign');
         });
     }

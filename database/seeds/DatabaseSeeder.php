@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         // call our class and run our seeds
         $this->call('CuerAppSeeder');
-        $this->command->info('Bear app seeds finished.'); // show information in the command line after everything is run
+        $this->command->info('CUER app seeds finished.'); // show information in the command line after everything is run
         
         // Eloquent::guard();
     }
@@ -38,6 +38,7 @@ class CuerAppSeeder extends Seeder {
         DB::table('locations')->delete();
         DB::table('tasks')->delete();
         DB::table('users')->delete();
+        $this->command->info('Dropping the tables!');
 
         // seed our users table -----------------------
         // we'll create three different users
@@ -73,36 +74,37 @@ class CuerAppSeeder extends Seeder {
         $this->command->info('The users are alive!');
 
         // seed our invType table ---------------------
-        $typeCar = invType::create(array(
+        $typeCar = InvType::create(array(
             'name'          => 'GenCar',
             'description'   => 'Designed by gods',
             'mass'          =>  160.2,
         ));
-        $typeEgo = invType::create(array(
+        $typeEgo = InvType::create(array(
             'name'          => 'GenEgo',
             'description'   => 'Brighter than the australian sun',
             'mass'          => 40000,
         ));
+        factory(InvType::class, 10)->create();
         $this->command->info('Inventory types!');
 
         // seed our invItem table ------------------------
 
-        $itemRes = invItem::create(array(
+        $itemRes = InvItem::create(array(
             'type_id'       => $typeEgo->id,
             'updated_by'    => $userRes->id,
             'reference'     => 'cats n shit'
         ));
-        $itemEvo = invItem::create(array(
+        $itemEvo = InvItem::create(array(
             'type_id'       => $typeCar->id,
             'updated_by'    => $userEvo->id,
             'reference'     => 'a'
         ));
-        $itemGen = invItem::create(array(
+        $itemGen = InvItem::create(array(
             'type_id'       => $typeEgo->id,
             'updated_by'    => $userGen->id,
             'reference'     => NULL
         ));
-        
+        factory(InvItem::class, 100)->create();
         $this->command->info('Cars be built!');
 
         // seed our locations table ---------------------
@@ -117,7 +119,7 @@ class CuerAppSeeder extends Seeder {
             'description' => 'A blue place',
         ));
 
-        $this->command->info('They are terrorizing picnics!');
+        $this->command->info('They are terrorizing kangaroos!');
 
     }
 

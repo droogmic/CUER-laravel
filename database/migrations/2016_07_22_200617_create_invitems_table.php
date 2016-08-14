@@ -19,7 +19,11 @@ class CreateInvitemsTable extends Migration
             $table->integer('type_id')->unsigned();
             // ->foreign('type_id')->references('id')->on('inv_type');
             $table->string('reference')->unique()->nullable();
-            $table->integer('updated_by')->unsigned();
+            
+            $table->integer('location_id')->unsigned()->nullable();
+            // ->foreign('location_id')->references('id')->on('locations');
+            
+            $table->integer('updated_by')->unsigned()->nullable();
             // ->foreign('updated_by')->references('id')->on('person');
             
             // polymorphic

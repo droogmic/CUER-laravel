@@ -4,24 +4,33 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\InvType;
-
 class InvItem extends Model
 {
-    //
     
     // MASS ASSIGNMENT -------------------------------------------------------
-    // define which attributes are mass assignable (for security)
-    // we only want these 3 attributes able to be filled
+    /**
+     * Mass assignable attributes
+     */
     protected $fillable = array('type_id', 'updated_by_id', 'reference');
     
     // DEFINE RELATIONSHIPS --------------------------------------------------
-    // each invTyp has many invItems
+    /**
+     * The invType that this item is.
+     */
     public function invtype() {
         return $this->belongsTo('App\InvType', 'type_id');
     }
     
-    // each user has many invItems
+    /**
+     * The location of the item.
+     */
+    public function location() {
+        return $this->belongsTo('App\Location', 'location_id');
+    }
+    
+    /**
+     * The user that owns this item.
+     */
     public function user() {
         return $this->belongsTo('App\User', 'updated_by_id');
     }
@@ -31,5 +40,13 @@ class InvItem extends Model
     // {
     //     return $this->morphTo();
     // }
+    
+    /**
+     * The lists that this item belongs to.
+     */
+    public function lists()
+    {
+        return $this->belongsToMany('App\InvList', 'inv_item_list', 'item_id', 'list_id');
+    }
     
 }

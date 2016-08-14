@@ -21,15 +21,16 @@ class InvType extends Model
         return $this->hasMany('App\InvItem', 'type_id');
     }
     
-    // GET ITEM COUNT
-    // https://softonsofa.com/tweaking-eloquent-relations-how-to-get-hasmany-relation-count-efficiently/
+    /**
+     * Get item count.
+     * https://softonsofa.com/tweaking-eloquent-relations-how-to-get-hasmany-relation-count-efficiently/
+     */
     public function invitemsCount()
     {
       return $this->hasOne('App\InvItem', 'type_id')
         ->selectRaw('type_id, count(*) as aggregate')
         ->groupBy('type_id');
     }
-     
     public function getInvitemsCountAttribute()
     {
       // if relation is not loaded already, let's do it first
