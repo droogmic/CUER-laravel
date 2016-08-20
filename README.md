@@ -1,8 +1,9 @@
 # CUER Laravel
 
 ## Running with homestead
-<https://laravel.com/docs/5.2/homestead>
-Copy `.env.homestead` to `.env`
++ Follow the guide here: <https://laravel.com/docs/5.2/homestead>
++ Copy `.env.homestead` to `.env`
++ Run the following:
 ```
 $ vagrant up
 $ vagrant ssh
