@@ -2,6 +2,14 @@
 
 ## Running with homestead
 <https://laravel.com/docs/5.2/homestead>
+Copy `.env.homestead` to `.env`
+```
+$ vagrant up
+$ vagrant ssh
+$ cd CUER
+$ php artisan migrate
+$ php artisan db:seed
+```
 
 ---------------------------------
 
