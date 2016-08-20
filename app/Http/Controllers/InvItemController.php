@@ -19,24 +19,11 @@ class InvItemController extends Controller
      */
     public function index()
     {
-        // $invitems = InvItem::orderBy('type_id', 'asc')->get();
-        // $invitems = InvItem::orderBy('type_id', 'asc')->paginate(20);
-        
         $invitems = InvItem::join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
         $invtypes = InvType::orderBy('name', 'asc')->get();
-    
-        // return view('invitems', [
-        //     'invitems' => $invitems,
-        //     'invtypes' => $invtypes,
-        //     'type_name' => 'All',
-        // ]);
-        // return view('InvItems.invitem_dashboard', [
-        //     'invitems' => $invitems,
-        //     'invtypes' => $invtypes,
-        //     'type_name' => 'All',
-        // ]);
+        
         return view('dashboard', [
-            'type' => 'InvItems',
+            'type' => 'InvItems', // Name of view folder
             'invitems' => $invitems,
             'invtypes' => $invtypes,
             'invitem_type_name' => 'All',
@@ -50,14 +37,16 @@ class InvItemController extends Controller
      */
     public function index_type(InvType $invtype)
     {
-        // $invitems = InvItem::where('type_id', '=', $invtype->id)->orderBy('created_at', 'asc')->get();
-        $invitems = InvItem::where('type_id', '=', $invtype->id)->orderBy('created_at', 'asc')->simplePaginate(50);
-        $invtypes = InvType::orderBy('created_at', 'asc')->get();
+        // $invitems = InvItem::where('type_id', '=', $invtype->id)->orderBy('created_at', 'asc')->simplePaginate(50);
+        // $invtypes = InvType::orderBy('created_at', 'asc')->get();
+        $invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
+        $invtypes = InvType::orderBy('name', 'asc')->get();
     
-        return view('invitems', [
+        return view('dashboard', [
+            'type' => 'InvItems', // Name of view folder
             'invitems' => $invitems,
             'invtypes' => $invtypes,
-            'type_name' => '"'.$invtype->name.'"',
+            'invitem_type_name' => '"'.$invtype->name.'"',
         ]);
     }
 
