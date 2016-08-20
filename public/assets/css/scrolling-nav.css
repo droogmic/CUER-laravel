@@ -39,7 +39,7 @@ of those sections to manage the look and feel of the site. */
     padding-top: 60px;
     padding-bottom: 40px;
     /*height: 100%;*/
-    text-align: center;
+    /*text-align: center;*/
     background: #fff;
 }
 
@@ -47,6 +47,6 @@ of those sections to manage the look and feel of the site. */
     padding-top: 60px;
     padding-bottom: 40px;
     /*height: 100%;*/
-    text-align: center;
+    /*text-align: center;*/
     background: #eee;
 }
