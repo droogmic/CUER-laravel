@@ -19,7 +19,7 @@ class InvItemController extends Controller
      */
     public function index()
     {
-        $invitems = InvItem::join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
+        $invitems = InvItem::join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->select('inv_items.*')->paginate(20);
         $invtypes = InvType::orderBy('name', 'asc')->get();
         
         return view('dashboard', [

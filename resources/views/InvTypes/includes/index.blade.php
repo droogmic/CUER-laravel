@@ -29,17 +29,25 @@
                         <tr>
                             <td class="table-text">
                                 <div>
-                                    <a href="{{ url('invitem/type/'.$invtype->id) }}">{{ $invtype->name }}</a>
+                                    {{ $invtype->name }}
                                 </div>
                             </td>
-                            <td class="table-text"><div>{{ $invtype->mass }}</div></td>
-                            <td class="table-text"><div>{{ $invtype->invitemsCount }}</div></td>
+                            <td class="table-text">
+                                <div>
+                                    {{ $invtype->mass }}
+                                </div>
+                            </td>
+                            <td class="table-text">
+                                <div>
+                                    <a href="{{ url('invitem/type/'.$invtype->id) }}">{{ $invtype->invitemsCount }}</a>
+                                </div>
+                            </td>
                             <!-- InvType Delete Button -->
                             <td>
                                 <form action="{{ url('invtype/'.$invtype->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-        
+
                                     <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-btn fa-trash delete-button"></i>
                                         <!--Delete-->

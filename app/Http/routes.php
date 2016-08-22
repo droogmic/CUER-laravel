@@ -70,8 +70,16 @@ Route::get('/test', function () {
     //     echo '</pre>';
     // }
     
-    $invtype_ids = DB::table('inv_types')->select('id')->get();
-    $invtypes = InvType::orderBy('created_at', 'asc')->get();
+    // $invtype_ids = DB::table('inv_types')->select('id')->get();
+    // $invtypes = InvType::orderBy('created_at', 'asc')->get();
     // var_dump($invtypes);
-    print_r($invtype_ids[0]);
+    // print_r($invtype_ids[0]);
+    
+    // $invtypes = InvType::orderBy('name', 'asc')->get();
+    //$invitems = InvType::join('inv_items', 'inv_items.type_id', '=', 'inv_types.id')->select('name as type_name', 'inv_types.id as type_id', 'inv_items')->orderBy('name', 'asc')->get();
+    //$invitems = \DB::table('inv_types')->select('inv_items.*')->join('inv_items', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->get();
+    $invitems = InvItem::select('inv_items.*')->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->get();
+    // $invitem_ids = DB::table('inv_items')->select('id')->get();
+    print_r($invitems[1]->id);
+    var_dump($invitems);
 });
