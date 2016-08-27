@@ -45,17 +45,17 @@ class TaskController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect('/task')
                 ->withInput()
                 ->withErrors($validator);
         }
-    
+
         $task = new Task;
         $task->name = $request->name;
         $task->save();
-    
+
         return redirect('/task');
     }
 
@@ -99,7 +99,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
         $task->delete();
         return redirect('/task');
