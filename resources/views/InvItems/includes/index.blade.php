@@ -5,7 +5,11 @@
         <div class="panel-heading container-fluid">
             <div class="row">
                 <div class="col-sm-3 text-left">
-                    {{ $invitem_type_name }} Inventory Items
+                    @if( (! empty($invitem_type_name)) && (! empty($invitem_type_id)) )
+                        <a href="{{ url('invtype/edit/'.$invitem_type_id) }}">{{ $invitem_type_name }} </a>- Inventory Items
+                    @else
+                        All Inventory Items
+                    @endif
                 </div>
                 <div class="col-sm-6 text-center">
                     {{ $invitems->links() }}
@@ -36,7 +40,7 @@
                                 <form action="{{ url('invitem/'.$invitem->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-        
+
                                     <button type="submit" class="btn btn-danger">
                                         <i class="fa fa-btn fa-trash delete-button"></i>
                                         <!--Delete-->

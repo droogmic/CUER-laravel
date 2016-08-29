@@ -29,7 +29,8 @@
                         <tr>
                             <td class="table-text">
                                 <div>
-                                    {{ $invtype->name }}
+                                    <a href="{{ url('invtype/edit/'.$invtype->id) }}">{{ $invtype->name }}</a>
+                                    {{-- $invtype->name --}}
                                 </div>
                             </td>
                             <td class="table-text">
