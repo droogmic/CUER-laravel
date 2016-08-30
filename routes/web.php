@@ -80,8 +80,10 @@ Route::get('/test', function () {
     // $invtypes = InvType::orderBy('name', 'asc')->get();
     //$invitems = InvType::join('inv_items', 'inv_items.type_id', '=', 'inv_types.id')->select('name as type_name', 'inv_types.id as type_id', 'inv_items')->orderBy('name', 'asc')->get();
     //$invitems = \DB::table('inv_types')->select('inv_items.*')->join('inv_items', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->get();
-    $invitems = InvItem::select('inv_items.*')->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->get();
+    // $invitems = InvItem::select('inv_items.*')->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->get();
     // $invitem_ids = DB::table('inv_items')->select('id')->get();
-    print_r($invitems[1]->id);
-    var_dump($invitems);
+    // print_r($invitems[1]->id);
+    // var_dump($invitems);
+    $invitem = App\Task::find(1);
+    var_dump($invitem);
 });
