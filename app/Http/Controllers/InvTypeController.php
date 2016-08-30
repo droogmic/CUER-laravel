@@ -23,7 +23,7 @@ class InvTypeController extends Controller
         $invitems = InvItem::get();
         // $invtypes = InvType::orderBy('created_at', 'asc')->get();
         $invtypes = InvType::orderBy('name', 'asc')->paginate(20);
-        
+
         // return view('invtypes', [
         //     'invitems' => $invitems,
         //     'invtypes' => $invtypes,
@@ -57,13 +57,13 @@ class InvTypeController extends Controller
             'name' => 'required|max:255',
             'mass' => 'numeric',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect('/invtype')
                 ->withInput()
                 ->withErrors($validator);
         }
-    
+
         $invtype = new InvType;
         $invtype->name = $request->name;
         $invtype->description = $request->description;
@@ -72,7 +72,7 @@ class InvTypeController extends Controller
         else
             $invtype->mass = NULL;
         $invtype->save();
-        
+
         return redirect('/invtype');
     }
 
@@ -90,30 +90,59 @@ class InvTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Invtype  $invtype
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Invtype $invtype)
     {
-        //
+        $invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
+        $invtypes = InvType::orderBy('name', 'asc')->get();
+        return view('edit', [
+            'type' => 'InvTypes',
+            'invtype' => $invtype,
+            'type_list' => 'InvItems',
+            'invitems' => $invitems,
+            'invtypes' => $invtypes,
+            'invitem_type_name' => $invtype->name,
+            'invitem_type_id' => $invtype->id,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Invtype  $invtype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Invtype $invtype)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'mass' => 'numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/invtype')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $invtype->name = $request->name;
+        $invtype->description = $request->description;
+        if ($request->mass != '')
+            $invtype->mass = $request->mass;
+        else
+            $invtype->mass = NULL;
+        $invtype->save();
+
+        return redirect('/invtype');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Invtype  $invtype
      * @return \Illuminate\Http\Response
      */
     public function destroy(InvType $invtype)

@@ -21,15 +21,14 @@ class InvItemController extends Controller
     {
         $invitems = InvItem::join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->select('inv_items.*')->paginate(20);
         $invtypes = InvType::orderBy('name', 'asc')->get();
-        
+
         return view('dashboard', [
             'type' => 'InvItems', // Name of view folder
             'invitems' => $invitems,
             'invtypes' => $invtypes,
-            'invitem_type_name' => 'All',
         ]);
     }
-    
+
     /**
      * Display a listing of the resource of a specific type.
      *
@@ -41,12 +40,14 @@ class InvItemController extends Controller
         // $invtypes = InvType::orderBy('created_at', 'asc')->get();
         $invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
         $invtypes = InvType::orderBy('name', 'asc')->get();
-    
+
         return view('dashboard', [
             'type' => 'InvItems', // Name of view folder
             'invitems' => $invitems,
             'invtypes' => $invtypes,
-            'invitem_type_name' => '"'.$invtype->name.'"',
+            // 'invitem_type_name' => '"'.$invtype->name.'"',
+            'invitem_type_name' => $invtype->name,
+            'invitem_type_id' => $invtype->id,
         ]);
     }
 
@@ -72,19 +73,19 @@ class InvItemController extends Controller
         'type' => 'required',
         'reference' => 'unique:inv_items',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect('/invitem')
                 ->withInput()
                 ->withErrors($validator);
         }
-        
+
         $invitem = new InvItem;
         $invitem->type_id = $request->type;
         $invitem->reference = $request->reference;
         // $invitem->updated_by = 1;
         $invitem->save();
-        
+
         return redirect('/invitem');
     }
 

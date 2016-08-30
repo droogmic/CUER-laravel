@@ -35,6 +35,8 @@ Route::delete('/invitem/{invitem}', 'InvItemController@destroy');
  */
 Route::get('/invtype', 'InvTypeController@index');
 Route::post('/invtype/add', 'InvTypeController@store');
+Route::get('/invtype/edit/{invtype}', 'InvTypeController@edit');
+Route::post('/invtype/update/{invtype}', 'InvTypeController@update');
 Route::delete('/invtype/{invtype}', 'InvTypeController@destroy');
 
 /*
