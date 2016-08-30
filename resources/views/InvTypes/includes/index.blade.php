@@ -16,7 +16,6 @@
             </div>
         </div>
         <div class="panel-body">
-            {{ $invtypes->links() }}
             <table class="table table-striped invtype-table">
                 <thead>
                     <th>Name</th>
