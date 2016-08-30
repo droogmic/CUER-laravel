@@ -2,16 +2,18 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
 |
 */
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+
+// Auth::routes()
 
 /*
  * Show Homepage
@@ -55,13 +57,13 @@ Route::delete('/task/{task}', 'TaskController@destroy');
 use App\InvItem;
 use App\InvType;
 Route::get('/test', function () {
-    
+
     // print_r("Start");
     // $user = App\User::find(1);
     // print_r($user->name);
     // print_r($users = DB::table('users')->where('id', 1)->get());
     // print_r(DB::table('users')->select('name', 'email as user_email')->get());
-    
+
     // $invtypes = InvType::orderBy('created_at', 'asc')->get();
     // foreach ($invtypes as $invtype) {
     //     echo '<pre>';
@@ -69,12 +71,12 @@ Route::get('/test', function () {
     //     print_r(is_null($invtype->mass));
     //     echo '</pre>';
     // }
-    
+
     // $invtype_ids = DB::table('inv_types')->select('id')->get();
     // $invtypes = InvType::orderBy('created_at', 'asc')->get();
     // var_dump($invtypes);
     // print_r($invtype_ids[0]);
-    
+
     // $invtypes = InvType::orderBy('name', 'asc')->get();
     //$invitems = InvType::join('inv_items', 'inv_items.type_id', '=', 'inv_types.id')->select('name as type_name', 'inv_types.id as type_id', 'inv_items')->orderBy('name', 'asc')->get();
     //$invitems = \DB::table('inv_types')->select('inv_items.*')->join('inv_items', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->get();
