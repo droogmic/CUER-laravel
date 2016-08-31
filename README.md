@@ -8,10 +8,10 @@
 $ vagrant up
 $ vagrant ssh
 $ cd CUER
+$ composer install
 $ php artisan migrate
 $ php artisan db:seed
 ```
-
 ---------------------------------
 
 ## Laravel PHP Framework
