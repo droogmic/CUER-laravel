@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\InvItem::class, function (Faker\Generator $faker) {
-    $invtype_ids = DB::table('inv_types')->select('id')->get();
+    $invtype_ids = DB::table('inv_types')->select('id')->get()->all();
     return [
         'type_id'       => $faker->randomElement($invtype_ids)->id,
         'reference'     => str_random(10),
