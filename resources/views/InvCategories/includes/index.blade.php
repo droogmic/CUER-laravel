@@ -20,6 +20,7 @@
             <table class="table table-striped invcategory-table">
                 <thead>
                     <th>Name</th>
+					<th>Description</th>
                     <th>&nbsp;</th>
                 </thead>
                 <tbody>
@@ -28,6 +29,11 @@
                             <td class="table-text">
                                 <div>
                                     {{ $invcategory->name }}
+                                </div>
+                            </td>
+							<td class="table-text">
+                                <div>
+                                    {{ $invcategory->description }}
                                 </div>
                             </td>
                             <!-- Delete Button -->
