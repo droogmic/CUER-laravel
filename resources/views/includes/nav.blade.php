@@ -25,6 +25,7 @@
                 <li><a href="{{ url('invitem')}}">Inventory Items</a></li>
                 <li><a href="{{ url('invtype')}}">Inventory Types</a></li>
                 <li><a href="{{ url('invlist')}}">Inventory Lists</a></li>
+				<li><a href="{{ url('invcategory')}}">Inventory Categories</a></li>
                 <li><a href="{{ url('task')}}">Task List</a></li>
                 <li><a href="{{ url('test')}}">Testing</a></li>
             </ul>
