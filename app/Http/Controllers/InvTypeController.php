@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Validator;
 use App\InvItem;
 use App\InvType;
+use App\InvCategory;
 
 class InvTypeController extends Controller
 {
@@ -67,7 +68,7 @@ class InvTypeController extends Controller
         $invtype = new InvType;
         $invtype->name = $request->name;
         $invtype->description = $request->description;
-		$invitem->category_id = $request->category;
+		//$invitem->category_id = $request->category;
         if ($request->mass != '')
             $invtype->mass = $request->mass;
         else
@@ -96,9 +97,12 @@ class InvTypeController extends Controller
      */
     public function edit(Invtype $invtype)
     {
-        $invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
-		$invtypes = InvType::orderBy('name', 'asc')->get();
-		$invcategories = $invtype->categories;
+        //$invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
+		$invitems = $invtype->invitems()->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
+		$invtypes = InvType::orderBy('name', 'asc');
+		$allinvcategories = InvCategory::all();
+		$invcategories = $invtype->categories()->orderBy('name', 'asc');
+
         return view('edit', [
             'type' => 'InvTypes',
             'invtype' => $invtype,
@@ -106,6 +110,7 @@ class InvTypeController extends Controller
             'invitems' => $invitems,
             'invtypes' => $invtypes,
 			'invcategories' => $invcategories,
+			'allinvcategories' => $allinvcategories,
             'invitem_type_name' => $invtype->name,
             'invitem_type_id' => $invtype->id,
         ]);
@@ -118,7 +123,7 @@ class InvTypeController extends Controller
      * @param  Invtype  $invtype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invtype $invtype)
+    public function update(Request $request, InvType $invtype)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
@@ -137,7 +142,9 @@ class InvTypeController extends Controller
             $invtype->mass = $request->mass;
         else
             $invtype->mass = NULL;
+		
         $invtype->save();
+		$invtype->categories()->attach($request->category);
 
         return redirect('/invtype');
     }
