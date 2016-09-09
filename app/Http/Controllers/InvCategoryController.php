@@ -79,12 +79,22 @@ class InvCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  InvCategory $invcategory
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(InvCategory $invcategory)
     {
-        //
+        $invtypes = InvType::where('category_id', '=', $invcategory->id)->join('inv_categories', 'inv_types.category_id', '=', 'inv_categories.id')->orderBy('name', 'asc')->paginate(20);
+        $invcategories = InvType::orderBy('name', 'asc')->get();
+        return view('edit', [
+            'type' => 'InvCategories',
+            'invcategory' => $invcategory,
+            'type_list' => 'InvTypes',
+            'invtypes' => $invtypes,
+            'invcategories' => $invcategories,
+            'invtype_category_name' => $invcategory->name,
+            'invtype_category_id' => $invcategory->id,
+        ]);
     }
 
     /**

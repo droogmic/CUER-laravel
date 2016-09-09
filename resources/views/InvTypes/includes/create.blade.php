@@ -36,6 +36,7 @@
                     <input type="text" name="mass" id="invtype-mass" class="form-control" value="{{ old('invtype') }}" autocomplete="off"></textarea>
                 </div>
             </div>
+				
     
             <!-- Add InvType Button -->
             <div class="form-group">

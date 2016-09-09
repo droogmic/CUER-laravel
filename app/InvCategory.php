@@ -19,9 +19,10 @@ class InvCategory extends Model
      */
     public function types()
     {
-        return $this->belongsToMany('App\InvType', 'inv_types_categories', 'type_id', 'category_id');
+        return $this->belongsToMany('App\InvType', 'inv_types_categories', 'category_id', 'type_id');
     }
     
+	
     /**
      * The team that owns this list.
      */

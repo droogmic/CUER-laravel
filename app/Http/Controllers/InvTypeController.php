@@ -67,6 +67,7 @@ class InvTypeController extends Controller
         $invtype = new InvType;
         $invtype->name = $request->name;
         $invtype->description = $request->description;
+		$invitem->category_id = $request->category;
         if ($request->mass != '')
             $invtype->mass = $request->mass;
         else
@@ -96,13 +97,15 @@ class InvTypeController extends Controller
     public function edit(Invtype $invtype)
     {
         $invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
-        $invtypes = InvType::orderBy('name', 'asc')->get();
+		$invtypes = InvType::orderBy('name', 'asc')->get();
+		$invcategories = $invtype->categories;
         return view('edit', [
             'type' => 'InvTypes',
             'invtype' => $invtype,
             'type_list' => 'InvItems',
             'invitems' => $invitems,
             'invtypes' => $invtypes,
+			'invcategories' => $invcategories,
             'invitem_type_name' => $invtype->name,
             'invitem_type_id' => $invtype->id,
         ]);
