@@ -83,7 +83,7 @@ class InvItemController extends Controller
         $invitem = new InvItem;
         $invitem->type_id = $request->type;
         $invitem->reference = $request->reference;
-        // $invitem->updated_by = 1;
+		
         $invitem->save();
 
         return redirect('/invitem');

@@ -20,6 +20,14 @@ class InvType extends Model
     public function invitems() {
         return $this->hasMany('App\InvItem', 'type_id');
     }
+	
+	 /**
+     * The categories that this item belongs to.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany('App\InvCategory', 'inv_types_categories', 'type_id', 'category_id');
+    }
     
     /**
      * Get item count.

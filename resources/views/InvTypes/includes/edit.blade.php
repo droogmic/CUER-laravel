@@ -36,6 +36,19 @@
                     <input type="text" name="mass" id="invtype-mass" class="form-control" value="{{ $invtype->mass }}" autocomplete="off"></textarea>
                 </div>
             </div>
+			
+			<!-- InvType Add to Category -->
+            <div class="form-group">
+                <label for="invtype-addcategory" class="col-sm-3 control-label">Add to category</label>
+                <div class="col-sm-6">
+                    <select class="form-control" name="category">
+                        <option selected disabled>Category</option>
+                        @foreach ($allinvcategories as $allinvcategory)
+                            <option value="{{ $allinvcategory->id }}">{{ $allinvcategory->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
 
             <!-- Add InvType Button -->
             <div class="form-group">
@@ -45,6 +58,17 @@
                     </button>
                 </div>
             </div>
+					
         </form>
     </div>
 </div>
+
+<h2>
+	Current categories
+</h2>
+<ul>
+	@foreach ($invcategories as $invcategory)
+         <li> {{ $invcategory->name }}</li>
+    @endforeach
+</ul>
+	

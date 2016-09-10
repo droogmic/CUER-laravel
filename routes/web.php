@@ -47,6 +47,14 @@ Route::post('/invlist/add', 'InvListController@store');
 Route::delete('/invlist/{invlist}', 'InvListController@destroy');
 
 /*
+ * InvCategory
+ */
+Route::get('/invcategory', 'InvCategoryController@index');
+Route::post('/invcategory/add', 'InvCategoryController@store');
+Route::get('/invcategory/edit/{invcategory}', 'InvCategoryController@edit');
+Route::delete('/invcategory/{invcategory}', 'InvCategoryController@destroy');
+
+/*
  * Task
  */
 Route::get('/task', 'TaskController@index');
