@@ -1,4 +1,9 @@
 # CUER Laravel
+Based on the [Laravel PHP Framework](https://github.com/laravel/laravel)
+
+## Status
+[![Build Status](https://travis-ci.org/droogmic/CUER-laravel.svg?branch=Tests%2Finit)](https://travis-ci.org/droogmic/CUER-laravel)
+
 
 ## Running with homestead
 + Follow the guide here: <https://laravel.com/docs/5.2/homestead>
@@ -12,6 +17,7 @@ $ composer install
 $ php artisan migrate
 $ php artisan db:seed
 ```
+
 ---------------------------------
 
 ## Laravel PHP Framework
