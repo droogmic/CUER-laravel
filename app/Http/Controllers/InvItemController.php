@@ -126,7 +126,7 @@ class InvItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  InvItem  $invitem
      * @return \Illuminate\Http\Response
      */
     public function destroy(InvItem $invitem)

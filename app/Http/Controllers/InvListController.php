@@ -18,9 +18,9 @@ class InvListController extends Controller
      */
     public function index()
     {
-        
+
         $invlists = InvList::paginate(20);
-        
+
         return view('dashboard', [
             'type' => 'InvLists',
             'invlists' => $invlists,
@@ -48,19 +48,19 @@ class InvListController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect('/invlist')
                 ->withInput()
                 ->withErrors($validator);
         }
-    
+
         $invlist = new InvList;
         $invlist->name = $request->name;
         $invlist->description = $request->description;
-        
+
         $invlist->save();
-        
+
         return redirect('/invlist');
     }
 
@@ -101,7 +101,7 @@ class InvListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  InvList  $invlist
      * @return \Illuminate\Http\Response
      */
     public function destroy(InvList $invlist)

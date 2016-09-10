@@ -90,10 +90,10 @@ class InvTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Invtype  $invtype
+     * @param  InvType  $invtype
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invtype $invtype)
+    public function edit(InvType $invtype)
     {
         $invitems = InvItem::where('type_id', '=', $invtype->id)->join('inv_types', 'inv_items.type_id', '=', 'inv_types.id')->orderBy('name', 'asc')->paginate(20);
         $invtypes = InvType::orderBy('name', 'asc')->get();
@@ -112,10 +112,10 @@ class InvTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Invtype  $invtype
+     * @param  InvType  $invtype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invtype $invtype)
+    public function update(Request $request, InvType $invtype)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
@@ -142,7 +142,7 @@ class InvTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Invtype  $invtype
+     * @param  InvType  $invtype
      * @return \Illuminate\Http\Response
      */
     public function destroy(InvType $invtype)
