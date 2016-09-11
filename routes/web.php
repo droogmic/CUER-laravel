@@ -58,6 +58,7 @@ Route::delete('/task/{task}', 'TaskController@destroy');
  */
 use App\InvItem;
 use App\InvType;
+
 Route::get('/test', function () {
 
     // print_r("Start");

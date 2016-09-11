@@ -4,7 +4,9 @@ use Illuminate\Database\Seeder;
 
 use App\User;
 use App\Task;
-use App\InvItem, App\InvType, App\Location;
+use App\InvItem;
+use App\InvType;
+use App\Location;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,16 +23,17 @@ class DatabaseSeeder extends Seeder
         // call our class and run our seeds
         $this->call('CuerAppSeeder');
         $this->command->info('CUER app seeds finished.'); // show information in the command line after everything is run
-        
+
         // Eloquent::guard();
     }
 }
 
 // our own seeder class
 // usually this would be its own file
-class CuerAppSeeder extends Seeder {
-    
-    public function run() {
+class CuerAppSeeder extends Seeder
+{
+    public function run()
+    {
 
         // clear our database ------------------------------------------
         DB::table('inv_items')->delete();
@@ -102,7 +105,7 @@ class CuerAppSeeder extends Seeder {
         $itemGen = InvItem::create(array(
             'type_id'       => $typeEgo->id,
             'updated_by'    => $userGen->id,
-            'reference'     => NULL
+            'reference'     => null
         ));
         factory(InvItem::class, 100)->create();
         $this->command->info('Cars be built!');
@@ -120,7 +123,5 @@ class CuerAppSeeder extends Seeder {
         ));
 
         $this->command->info('They are terrorizing kangaroos!');
-
     }
-
 }

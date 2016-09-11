@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     //
-    
+
     // MASS ASSIGNMENT -------------------------------------------------------
     protected $fillable = array('name', 'description');
 

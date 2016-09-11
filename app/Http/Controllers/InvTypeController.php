@@ -67,10 +67,11 @@ class InvTypeController extends Controller
         $invtype = new InvType;
         $invtype->name = $request->name;
         $invtype->description = $request->description;
-        if ($request->mass != '')
+        if ($request->mass != '') {
             $invtype->mass = $request->mass;
-        else
-            $invtype->mass = NULL;
+        } else {
+            $invtype->mass = null;
+        }
         $invtype->save();
 
         return redirect('/invtype');
@@ -130,10 +131,11 @@ class InvTypeController extends Controller
 
         $invtype->name = $request->name;
         $invtype->description = $request->description;
-        if ($request->mass != '')
+        if ($request->mass != '') {
             $invtype->mass = $request->mass;
-        else
-            $invtype->mass = NULL;
+        } else {
+            $invtype->mass = null;
+        }
         $invtype->save();
 
         return redirect('/invtype');

@@ -34,7 +34,7 @@ class ForeignKeyConstraintsInvItemList extends Migration
             $table->dropForeign('inv_item_list_list_id_foreign');
         });
         Schema::table('inv_lists', function (Blueprint $table) {
-            $table->dropForeign('inv_lists_location_id_foreign');            
+            $table->dropForeign('inv_lists_location_id_foreign');
             $table->dropForeign('inv_lists_updated_by_foreign');
         });
     }

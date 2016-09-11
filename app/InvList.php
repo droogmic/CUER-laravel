@@ -25,15 +25,16 @@ class InvList extends Model
     /**
      * The location of the list.
      */
-    public function location() {
+    public function location()
+    {
         return $this->belongsTo('App\Location', 'location_id');
     }
     
     /**
      * The user that owns this list.
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User', 'updated_by_id');
     }
-    
 }

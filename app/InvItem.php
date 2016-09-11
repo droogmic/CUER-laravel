@@ -17,21 +17,24 @@ class InvItem extends Model
     /**
      * The invType that this item is.
      */
-    public function invtype() {
+    public function invtype()
+    {
         return $this->belongsTo('App\InvType', 'type_id');
     }
     
     /**
      * The location of the item.
      */
-    public function location() {
+    public function location()
+    {
         return $this->belongsTo('App\Location', 'location_id');
     }
     
     /**
      * The user that owns this item.
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User', 'updated_by_id');
     }
     
@@ -40,7 +43,7 @@ class InvItem extends Model
     // {
     //     return $this->morphTo();
     // }
-    
+
     /**
      * The lists that this item belongs to.
      */
@@ -48,5 +51,4 @@ class InvItem extends Model
     {
         return $this->belongsToMany('App\InvList', 'inv_item_list', 'item_id', 'list_id');
     }
-    
 }

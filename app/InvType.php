@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class InvType extends Model
 {
     //
-    
+
     // MASS ASSIGNMENT -------------------------------------------------------
     // define which attributes are mass assignable (for security)
     // we only want these 3 attributes able to be filled
@@ -17,7 +17,8 @@ class InvType extends Model
 
     // DEFINE RELATIONSHIPS --------------------------------------------------
     // each invItem has one invType
-    public function invitems() {
+    public function invitems()
+    {
         return $this->hasMany('App\InvItem', 'type_id');
     }
     
@@ -27,20 +28,20 @@ class InvType extends Model
      */
     public function invitemsCount()
     {
-      return $this->hasOne('App\InvItem', 'type_id')
+        return $this->hasOne('App\InvItem', 'type_id')
         ->selectRaw('type_id, count(*) as aggregate')
         ->groupBy('type_id');
     }
     public function getInvitemsCountAttribute()
     {
-      // if relation is not loaded already, let's do it first
-      if ( ! $this->relationLoaded('invitemsCount'))
-        $this->load('invitemsCount');
+        // if relation is not loaded already, let's do it first
+      if (! $this->relationLoaded('invitemsCount')) {
+          $this->load('invitemsCount');
+      }
      
-      $related = $this->getRelation('invitemsCount');
+        $related = $this->getRelation('invitemsCount');
      
       // then return the count directly
       return ($related) ? (int) $related->aggregate : 0;
     }
- 
 }

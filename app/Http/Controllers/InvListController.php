@@ -18,7 +18,6 @@ class InvListController extends Controller
      */
     public function index()
     {
-
         $invlists = InvList::paginate(20);
 
         return view('dashboard', [

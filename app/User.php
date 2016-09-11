@@ -27,7 +27,8 @@ class User extends Authenticatable
 
     // DEFINE RELATIONSHIPS --------------------------------------------------
     // each invItem has one user
-    public function invitems() {
+    public function invitems()
+    {
         return $this->hasMany('InvItem');
     }
 }

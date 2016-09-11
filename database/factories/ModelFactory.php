@@ -30,10 +30,11 @@ $factory->define(App\InvItem::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\InvType::class, function (Faker\Generator $faker) {
-    if($faker->boolean($chanceOfGettingTrue = 40))
-        $rand_mass = $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100);
-    else
-        $rand_mass = NULL;
+    if ($faker->boolean($chanceOfGettingTrue = 40)) {
+        $rand_mass = $faker->randomFloat($nbMaxDecimals = null, $min = 0, $max = 100);
+    } else {
+        $rand_mass = null;
+    }
     return [
         'name'          => $faker->word,
         'description'   => $faker->realText($maxNbChars = 200),
