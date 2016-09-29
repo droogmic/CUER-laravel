@@ -29,14 +29,17 @@ php artisan db:seed
 + Change home directory for cygwin to your user (probably not strictly necessary, but makes things a lot less confusing, and will keep consistency with the rest of the instructions here): http://stackoverflow.com/questions/1494658/how-can-i-change-my-cygwin-home-folder-after-installation
 + Check that hardware virtualisation is enabled: http://www.howtogeek.com/213795/how-to-enable-intel-vt-x-in-your-computers-bios-or-uefi-firmware/
 + Download putty and puttygen: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
-+ Now open a cygwin terminal, and enter the following command:
++ Download and install git if you haven't already, and then clone this repo. There's plenty of help documentation online/you can ask one of us if you struggle with this. 
++ Now open a cygwin terminal, ensure you are in the home directory, and enter the following commands:
 ```
 vagrant box add laravel/homestead
+git clone https://github.com/laravel/homestead.git Homestead
+bash init.sh
 ```
 
-+ Download and install git if you haven't already, and then clone this repo. There's plenty of help documentation online/you can ask one of us if you struggle with this. 
++ Copy `.env.homestead` to `.env`
 
-We now need to edit the ~/.homestead/Homestead.yaml file so that it maps the github code you just cloned into the correct folders in the virtualbox. 
+We now need to edit the ~/.homestead/Homestead.yaml file so that it maps the CUER github code you just cloned into the correct folders in the virtualbox. 
 
 + In the 'folders' section, change the 'map' path to match where you cloned the CUER-laravel repo (e.g. - map: ~/CUER-laravel)
 + In the 'folders' section, change the 'to' path to '/home/vagrant/CUER'
@@ -54,7 +57,7 @@ mkdir .ssh
 + Run puttygen
 + Click Load, and make sure 'All files' is selected
 + Load id_rsa
-+ Press generate and follow instructions
++ Press generate and follow the instructions
 + Press 'Save public key' and then save it to .ssh as id_rsa.pub
 + Now press save private key, and press 'yes' when it asks to save without a passphrase
 + Save it as 'vagrant_private_key' in the ~/.ssh folder (should have a .ppk extension)
